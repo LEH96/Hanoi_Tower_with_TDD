@@ -1,4 +1,6 @@
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
@@ -13,21 +15,29 @@ class ClassSolution {
 }
 
 class Hanoi {
-    private final int FROM;
-    private final int TO;
-    private final int n;
+    private final List<int[]> moves = new ArrayList<>();
 
     Hanoi(int n, int from, int to) {
-        this.FROM = from;
-        this.TO = to;
-        this.n = n;
+        calculate(from, to, n);
+    }
+
+    private void calculate(int from, int to, int n) {
+        int by = 6 - from - to;
+
+        if(n == 1) { addPath(from, to); return; }
+
+        calculate(from, by, n-1);
+        calculate(from, to, 1);
+        calculate(by, to, n-1);
+
+    }
+
+    private void addPath(int from, int to) {
+        moves.add(new int[]{from, to});
     }
 
     public int[][] toArray(){
-        if(n == 1) return new int[][] {{1,3}};
-        if(n == 2 && FROM == 1 && TO == 2 )
-            return new int[][]{{1,3},{1,2},{3,2}};
-        if(n == 2) return new int[][]{{1,2},{1,3},{2,3}};
-        return new int[0][0];
+        //List<int[]> -> int[][]
+        return moves.toArray(int[][]::new);
     }
 }

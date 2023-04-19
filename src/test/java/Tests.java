@@ -11,7 +11,7 @@ public class Tests {
     @DisplayName("n = 1 : [ [1,3] ]")
     void t001() {
         assertThat(
-                new Hanoi(1, 3, 1).toArray()
+                new Hanoi(1, 1, 3).toArray()
         ).isEqualTo(
                 new int[][]{{1,3}}
         );
