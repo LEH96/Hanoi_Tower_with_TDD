@@ -11,7 +11,7 @@ public class Tests {
     @DisplayName("n = 1 : [ [1,3] ]")
     void t001() {
         assertThat(
-                new ClassSolution().solution(2)
+                new Hanoi(1, 3, 1).toArray()
         ).isEqualTo(
                 new int[][]{{1,3}}
         );
@@ -21,9 +21,21 @@ public class Tests {
     @DisplayName("n = 2 : [ [1,2], [1,3], [2,3] ]")
     void t002() {
         assertThat(
-                new ClassSolution().solution(2)
+                new Hanoi(2, 1, 3).toArray()
         ).isEqualTo(
                 new int[][]{{1,2},{1,3},{2,3}}
         );
     }
+
+    @Test
+    @DisplayName("from = 1, to = 2 가정 , n = 2 : [ [1,3], [1,2], [3,2] ]")
+    void t003() {
+        assertThat(
+                new Hanoi(2, 1, 2).toArray()
+        ).isEqualTo(
+                new int[][]{{1,3},{1,2},{3,2}}
+        );
+    }
+
+
 }
